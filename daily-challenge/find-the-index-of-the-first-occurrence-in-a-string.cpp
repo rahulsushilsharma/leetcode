@@ -3,27 +3,27 @@ public:
   int strStr(string haystack, string needle) {
     int i = 0;
     int j = 0;
-    int flag = 1;
-    int cur = 0;
+    int k = 0;
+    while(i<haystack.size() && j<needle.size()){
+        if(haystack[i] == needle[0]){
+            int flag = 0;
+            int cur = i;
+            j = i;
+            while(k<needle.size()){
+                if(j>=haystack.size())return -1;
+                if(haystack[j]!=needle[k]){
+                    j=0;
+                    k = 0;
+                    flag=1;
+                    break;
+                }
+                k++;
+                j++;
 
-    while (i < haystack.size()) {
-      cur = 0;
-
-      if (haystack[i] == needle[0]) {
-        cur = i;
-        flag = 0;
-        while (j < needle.size() && i < haystack.size()) {
-          cout << haystack[i] << ' ' << needle[j] << endl;
-          if (haystack[i++] != needle[j++]) {
-            flag = 0;
-            cout << "break" << endl;
-            break;
-          }
+            }
+            if(flag != 1)return cur;
         }
-        if (flag == 0 || i >= haystack.size())
-          return cur;
-        j = 0;
-      }
+        i++;
     }
     return -1;
   }
